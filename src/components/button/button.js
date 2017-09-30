@@ -7,7 +7,7 @@ export const Button = (props) => {
         <button 
             className={styles.buttonStyle}
             type={props.type}
-            onClick={props.onClick}>
+            onClick={() => props.onDismiss(props.id)}>
             {props.label}
         </button>
     )
