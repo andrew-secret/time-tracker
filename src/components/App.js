@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {Button} from './button/button'
-import logo from '../logo.svg';
+import {Button} from './button/button';
+import Timer from './Timer/Timer';
 import './App.scss';
-
 
 const clientList = [
   {
@@ -29,9 +28,11 @@ class App extends Component {
 
     this.state = {
       clientList,
+      timeElapsed: 0,
+      isRunning: false,
     };
-
     this.onDismiss = this.onDismiss.bind(this);
+    this.startTimer = this.startTimer.bind(this);
   }
 
   onDismiss(id) {
@@ -42,27 +43,56 @@ class App extends Component {
     })
   }
 
+  getSeconds = () => (`0${this.state.timeElapsed % 60}`).slice(-2);
+  getMinutes = () => (`0${Math.floor(this.state.timeElapsed / 60)}`).slice(-2);
+  getHours = () => `0${Math.floor(this.state.timeElapsed / 600)}`;
+
+
+   startTimer = () => {
+    this.interval = setInterval(() => {
+      this.setState({ 
+        timeElapsed: this.state.timeElapsed + 1,
+        isRunning: true
+      })
+     }, 1000);
+  }
+
+  stopTimer = () => {
+    clearInterval(this.interval);
+    this.setState({
+      isRunning: false
+    })
+  }
+
+  reset = () => {
+    clearInterval(this.interval);
+    this.setState({
+      timeElapsed: 0,
+      isRunning: false
+    })
+  }
+
   render() {
-
-    const hello = 'Welcome to the react universe';
-
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">{hello}</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        { this.state.clientList.map((item) => <div key={item.id}>
+        <Timer timer={this.state.timer}
+          startTimer={this.startTimer}
+          stopTimer={this.stopTimer}
+          reset={this.reset}
+          hours={this.getHours()}
+          isRunning={this.state.isRunning}
+          minutes={this.getMinutes()}
+          seconds={this.getSeconds()}/>
+        {this.state.clientList.map((item) => <div key={item.id}>
           {item.client}
-          <button
-            onClick={() => this.onDismiss(item.id)}
-            type="button">
-            Dismiss
-          </button>
+          <Button
+            onClick={() => this.onDismiss(item.id)}>
+          </Button>
         </div>)}
+        <Button
+          onClick={this.reset}
+          label="reset">
+        </Button>
       </div>
     );
   }
