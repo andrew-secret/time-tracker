@@ -8,6 +8,9 @@ export const Button = (props) => {
             type={props.type}
             onClick={props.onClick}>
             {props.label}
+            <i className="material-icons">
+                {props.icon}
+            </i>
         </button>
     )
 }

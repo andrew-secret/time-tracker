@@ -22,22 +22,15 @@ const clientList = [
   },
 ];
 
-const timer = {
-  hours: 0,
-  minutes: 0,
-  seconds: 0,
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       clientList,
-      timer,
       timeElapsed: 0,
+      isRunning: false,
     };
-    console.log('huhu', this.state.timer.hours);
     this.onDismiss = this.onDismiss.bind(this);
     this.startTimer = this.startTimer.bind(this);
   }
@@ -55,33 +48,50 @@ class App extends Component {
   getHours = () => `0${Math.floor(this.state.timeElapsed / 600)}`;
 
 
-  startTimer = () => {
-    setInterval(() => {
-      this.setState({ timeElapsed: this.state.timeElapsed + 1 })
+   startTimer = () => {
+    this.interval = setInterval(() => {
+      this.setState({ 
+        timeElapsed: this.state.timeElapsed + 1,
+        isRunning: true
+      })
      }, 1000);
   }
 
   stopTimer = () => {
+    clearInterval(this.interval);
+    this.setState({
+      isRunning: false
+    })
+  }
+
+  reset = () => {
+    clearInterval(this.interval);
+    this.setState({
+      timeElapsed: 0,
+      isRunning: false
+    })
   }
 
   render() {
     return (
       <div className="App">
         <Timer timer={this.state.timer}
-          startTimer={this.startTimer}/>
-        { this.state.clientList.map((item) => <div key={item.id}>
+          startTimer={this.startTimer}
+          stopTimer={this.stopTimer}
+          reset={this.reset}
+          hours={this.getHours()}
+          isRunning={this.state.isRunning}
+          minutes={this.getMinutes()}
+          seconds={this.getSeconds()}/>
+        {this.state.clientList.map((item) => <div key={item.id}>
           {item.client}
           <Button
             onClick={() => this.onDismiss(item.id)}>
           </Button>
         </div>)}
-        {this.getHours()}:{this.getMinutes()}:{this.getSeconds()}
         <Button
-          onClick={() => this.startTimer()}>
-        </Button>
-        <Button
-          onClick={() => this.stopTimer()}
-          label="stop">
+          onClick={this.reset}
+          label="reset">
         </Button>
       </div>
     );
