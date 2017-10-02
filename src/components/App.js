@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {Button} from './button/button'
-import logo from '../logo.svg';
+import {Button} from './button/button';
+import Timer from './Timer/Timer';
 import './App.scss';
-
 
 const clientList = [
   {
@@ -23,15 +22,24 @@ const clientList = [
   },
 ];
 
+const timer = {
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       clientList,
+      timer,
+      timeElapsed: 0,
     };
-
+    console.log('huhu', this.state.timer.hours);
     this.onDismiss = this.onDismiss.bind(this);
+    this.startTimer = this.startTimer.bind(this);
   }
 
   onDismiss(id) {
@@ -42,27 +50,39 @@ class App extends Component {
     })
   }
 
+  getSeconds = () => (`0${this.state.timeElapsed % 60}`).slice(-2);
+  getMinutes = () => (`0${Math.floor(this.state.timeElapsed / 60)}`).slice(-2);
+  getHours = () => `0${Math.floor(this.state.timeElapsed / 600)}`;
+
+
+  startTimer = () => {
+    setInterval(() => {
+      this.setState({ timeElapsed: this.state.timeElapsed + 1 })
+     }, 1000);
+  }
+
+  stopTimer = () => {
+  }
+
   render() {
-
-    const hello = 'Welcome to the react universe';
-
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">{hello}</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Timer timer={this.state.timer}
+          startTimer={this.startTimer}/>
         { this.state.clientList.map((item) => <div key={item.id}>
           {item.client}
-          <button
-            onClick={() => this.onDismiss(item.id)}
-            type="button">
-            Dismiss
-          </button>
+          <Button
+            onClick={() => this.onDismiss(item.id)}>
+          </Button>
         </div>)}
+        {this.getHours()}:{this.getMinutes()}:{this.getSeconds()}
+        <Button
+          onClick={() => this.startTimer()}>
+        </Button>
+        <Button
+          onClick={() => this.stopTimer()}
+          label="stop">
+        </Button>
       </div>
     );
   }
