@@ -2,13 +2,17 @@ import React from 'react'
 import styles from './button.scss'
 
 export const Button = (props) => {
-
     return (
         <button 
             className={styles.buttonStyle}
             type={props.type}
-            onClick={() => props.onDismiss(props.id)}>
+            onClick={props.onClick}>
             {props.label}
         </button>
     )
+}
+
+Button.defaultProps = {
+    type: 'button',
+    label: 'This is a button',
 }
