@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./clientList.scss";
+import styles from "./SelectList.scss";
 
-const clientList = props => {
+const SelectList = props => {
   return (
     <div className={styles.clientList}>
       <i className="material-icons">keyboard_arrow_down</i>
@@ -20,4 +20,4 @@ const clientList = props => {
   );
 };
 
-export default clientList;
+export default SelectList;

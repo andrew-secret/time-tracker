@@ -22,12 +22,11 @@ select {
 .clientList {
   position: relative;
   display: block;
-  width: 20em;
   line-height: 3;
   overflow: hidden;
-  border-radius: 0.25em;
 
   i {
+      pointer-events: none;
       position: absolute;
       right: 10px;
       top: 13px;

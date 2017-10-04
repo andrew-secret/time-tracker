@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import ContentView from "./ContentView/ContentView";
 import { Button } from "./button/button";
 import Timer from "./Timer/Timer";
-import ClientList from "./clientList/clientList";
+import SelectList from "./SelectList/SelectList";
+import ProjectDescription from "./ProjectDescription/ProjectDescription";
 import "./App.scss";
 
 const clients = [
@@ -80,21 +82,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Timer
-          timer={this.state.timer}
-          startTimer={this.startTimer}
-          stopTimer={this.stopTimer}
-          reset={this.reset}
-          hours={this.getHours()}
-          isRunning={this.state.isRunning}
-          minutes={this.getMinutes()}
-          seconds={this.getSeconds()}
-        />
-        <ClientList
-          currentClient={this.state.currentClient}
-          clients={this.state.clients}
-          handleChange={this.handleChange}/>
-        <Button onClick={this.reset} label="reset" />
+        <ContentView>
+          <Timer
+            timer={this.state.timer}
+            startTimer={this.startTimer}
+            stopTimer={this.stopTimer}
+            reset={this.reset}
+            hours={this.getHours()}
+            isRunning={this.state.isRunning}
+            minutes={this.getMinutes()}
+            seconds={this.getSeconds()}
+          />
+          <SelectList
+            currentClient={this.state.currentClient}
+            clients={this.state.clients}
+            handleChange={this.handleChange}/>
+
+          <ProjectDescription />
+          <Button onClick={this.reset} label="reset" />
+        </ContentView>
       </div>
     );
   }
