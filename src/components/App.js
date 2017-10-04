@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-import ContentView from "./ContentView/ContentView";
-import { Button } from "./button/button";
-import Timer from "./Timer/Timer";
-import SelectList from "./SelectList/SelectList";
-import ProjectDescription from "./ProjectDescription/ProjectDescription";
+import {BrowserRouter, Route} from 'react-router-dom';
+// import ContentView from "./ContentView/ContentView";
+// import { Button } from "./button/button";
+// import Timer from "./Timer/Timer";
+// import SelectList from "./SelectList/SelectList";
+// import ProjectDescription from "./ProjectDescription/ProjectDescription";
+
+import ListView from '../views/ListView/ListView';
+import TimerView from '../views/TimerView/TimerView';
+
 import "./App.scss";
 
 const clients = [
@@ -82,25 +87,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ContentView>
-          <Timer
-            timer={this.state.timer}
-            startTimer={this.startTimer}
-            stopTimer={this.stopTimer}
-            reset={this.reset}
-            hours={this.getHours()}
-            isRunning={this.state.isRunning}
-            minutes={this.getMinutes()}
-            seconds={this.getSeconds()}
-          />
-          <SelectList
-            currentClient={this.state.currentClient}
-            clients={this.state.clients}
-            handleChange={this.handleChange}/>
-
-          <ProjectDescription />
-          <Button onClick={this.reset} label="reset" />
-        </ContentView>
+        <BrowserRouter>
+          <div>
+            <Route exact path="/" render={(state) => ( 
+              <TimerView 
+                timer={this.state.timer}
+                startTimer={this.startTimer}
+                stopTimer={this.stopTimer}
+                reset={this.reset}
+                hours={this.getHours()}
+                isRunning={this.state.isRunning}
+                minutes={this.getMinutes()}
+                seconds={this.getSeconds()}
+                clients={this.state.clients}
+                currentClient={this.state.currentClient}
+                handleChange={this.handleChange}/> 
+              )} />
+            <Route path="/ListView" component={ListView} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
