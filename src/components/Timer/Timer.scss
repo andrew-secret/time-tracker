@@ -25,6 +25,22 @@
     outline: none;
 }
 
+.timerOffButton {
+    position: absolute;
+    bottom: -24px;
+    background: white;
+    left: 100px;
+    border-radius: 50px;
+    padding: 10px;
+    box-shadow: 0 3px 7px 0 rgba(black,.1);
+    outline: none;
+
+    i {
+        color: #4E5056;
+        font-size: 30px;
+    }
+}
+
 .timeLabel {
     color: white;
     font-size: 15px;
