@@ -1,11 +1,12 @@
 import React from 'react';
+import styles from './TimerView.scss';
 import Timer from '../../components/Timer/Timer';
 import SelectList from '../../components/SelectList/SelectList';
 import ProjectDescription from '../../components/ProjectDescription/ProjectDescription';
 
 const TimerView = props => {
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
         <Timer 
           timer={props.timer}
           startTimer={props.startTimer}
@@ -15,11 +16,13 @@ const TimerView = props => {
           isRunning={props.isRunning}
           minutes={props.minutes}
           seconds={props.seconds}/>
-        <SelectList 
-          clients={props.clients}
-          currentClient={props.currentClient}
-          handleChange={props.handleChange}/>
-        <ProjectDescription />
+          <div className={styles.inputSection}>
+            <SelectList 
+              clients={props.clients}
+              currentClient={props.currentClient}
+              handleChange={props.handleChange}/>
+            <ProjectDescription />
+        </div>
     </div>
   );
 };

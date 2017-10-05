@@ -9,7 +9,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import ListView from '../views/ListView/ListView';
 import TimerView from '../views/TimerView/TimerView';
 
-import "./App.scss";
+import styles from './App.scss';
 
 const clients = [
   {
@@ -86,9 +86,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={styles.App}>
         <BrowserRouter>
-          <div>
+          <div className={styles.background}>
             <Route exact path="/" render={(state) => ( 
               <TimerView 
                 timer={this.state.timer}

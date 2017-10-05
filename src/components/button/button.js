@@ -1,10 +1,12 @@
+import classnames from 'classnames';
 import React from 'react'
 import styles from './button.scss'
 
 export const Button = (props) => {
+    const buttonClasses = classnames(styles.buttonStyle, props.className);
     return (
         <button 
-            className={styles.buttonStyle}
+            className={buttonClasses}
             type={props.type}
             onClick={props.onClick}>
             {props.label}
