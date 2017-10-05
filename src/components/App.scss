@@ -4,7 +4,9 @@
 }
 
 .background {
-  background-image: linear-gradient(45deg, #C9EDF5 0%, rgba(202,234,242,0.99) 16%, rgba(240,118,141,0.45) 64%, rgba(176,7,100,0.16) 100%);
+  // background: linear-gradient(to right, #ddd6f3, #faaca8);
+  background-image: linear-gradient(-162deg, rgba(240,118,141,0.21) 0%, rgba(237,161,82,0.14) 26%, rgba(200,109,215,0.08) 100%);
+
   border-radius: 5px;
   width: 100%;
   margin: 5vh;

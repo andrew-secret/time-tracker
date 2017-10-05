@@ -4,6 +4,9 @@ import styles from "./SelectList.scss";
 const SelectList = props => {
   return (
     <div className={styles.clientList}>
+      <label className={styles.label}>
+        your client
+      </label>
       <i className="material-icons">keyboard_arrow_down</i>
       <select value={props.currentClient} onChange={props.handleChange}>
         <option value="" disabled selected>

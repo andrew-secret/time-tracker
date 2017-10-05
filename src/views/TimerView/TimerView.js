@@ -16,11 +16,13 @@ const TimerView = props => {
           isRunning={props.isRunning}
           minutes={props.minutes}
           seconds={props.seconds}/>
-        <SelectList 
-          clients={props.clients}
-          currentClient={props.currentClient}
-          handleChange={props.handleChange}/>
-        <ProjectDescription />
+          <div className={styles.inputSection}>
+            <SelectList 
+              clients={props.clients}
+              currentClient={props.currentClient}
+              handleChange={props.handleChange}/>
+            <ProjectDescription />
+        </div>
     </div>
   );
 };

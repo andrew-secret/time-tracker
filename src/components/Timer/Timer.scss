@@ -1,0 +1,40 @@
+.timer {
+    background: #F4F5F9;
+    background-image: linear-gradient(-133deg, rgba(239,201,245,0.83) 0%, rgba(109,194,237,0.79) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 15px 60px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    position: relative;
+
+    i {
+        font-size: 40px;
+        color: white;
+    }
+}
+
+.circleButton {
+    background-color: #4E5056;
+    border-radius: 120px;
+    padding: 20px;
+    position: absolute;
+    bottom: -40px;
+    box-shadow: 0 5px 20px 0 rgba(black, .2);
+    outline: none;
+}
+
+.timeLabel {
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding-top: 20px;
+}
+
+.currentTime {
+    color: white;
+    font-weight: 700;
+    font-size: 34px;
+    letter-spacing: .7px;
+}
