@@ -15,6 +15,11 @@ const Timer = props => {
         {props.minutes}:
         {props.seconds}
       </span>
+      <Button
+        label=""
+        icon="timer_off"
+        className={styles.timerOffButton}
+        onClick={props.reset}/>
       {props.isRunning === false ? (
         <Button
           label=""
