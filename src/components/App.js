@@ -1,11 +1,5 @@
 import React, { Component } from "react";
 import {BrowserRouter, Route} from 'react-router-dom';
-// import ContentView from "./ContentView/ContentView";
-// import { Button } from "./button/button";
-// import Timer from "./Timer/Timer";
-// import SelectList from "./SelectList/SelectList";
-// import ProjectDescription from "./ProjectDescription/ProjectDescription";
-
 import ListView from '../views/ListView/ListView';
 import TimerView from '../views/TimerView/TimerView';
 
@@ -26,6 +20,16 @@ const clients = [
   }
 ];
 
+const projects = [
+  {
+    id: 0,
+    client: 'Nikdin',
+    timeElapsed: 230,
+    earned: 100,
+    projectDescription: 'i did something...'
+  }
+];
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -34,9 +38,12 @@ class App extends Component {
       clients,
       timeElapsed: 0,
       isRunning: false,
-      currentClient: ''
+      currentClient: '',
+      projectDescription: ''
     };
-    this.handleChange = this.handleChange.bind(this);
+
+    this.handleProjectDescription = this.handleProjectDescription.bind(this);
+    this.handleClientChange = this.handleClientChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.startTimer = this.startTimer.bind(this);
   }
@@ -53,11 +60,17 @@ class App extends Component {
   getMinutes = () => `0${Math.floor(this.state.timeElapsed / 60)}`.slice(-2);
   getHours = () => `0${Math.floor(this.state.timeElapsed / 600)}`;
 
-  handleChange(event) {
+  handleClientChange(event) {
     this.setState({
       currentClient: event.target.value
     });
     console.log('event', event.target.value);
+  }
+
+  handleProjectDescription(event) {
+    this.setState({
+      projectDescription: event.target.value
+    })
   }
 
   startTimer = () => {
@@ -101,7 +114,8 @@ class App extends Component {
                 seconds={this.getSeconds()}
                 clients={this.state.clients}
                 currentClient={this.state.currentClient}
-                handleChange={this.handleChange}/> 
+                handleClientChange={this.handleClientChange}
+                handleProjectDescription={this.handleProjectDescription}/> 
               )} />
             <Route path="/ListView" component={ListView} />
           </div>

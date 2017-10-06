@@ -1,4 +1,12 @@
 .buttonStyle {
     border: none;
     cursor: pointer;
+    border-radius: 100px;
+    font-size: 16px;
+    color: white;
+    padding: 15px 20px;
+    letter-spacing: .18px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 10px 0 rgba(50, 51, 53, 0.15);
+    transition: background-color 250ms ease-in-out;
 }
