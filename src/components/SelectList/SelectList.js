@@ -8,7 +8,7 @@ const SelectList = props => {
         your client
       </label>
       <i className="material-icons">keyboard_arrow_down</i>
-      <select value={props.currentClient} onChange={props.handleChange}>
+      <select value={props.currentClient} onChange={props.handleClientChange}>
         <option value="" disabled selected>
           Choose your client...
         </option>

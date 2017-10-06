@@ -1,8 +1,11 @@
 import React from 'react';
+import Button from '../../components/Button/Button';
 import styles from './TimerView.scss';
 import Timer from '../../components/Timer/Timer';
 import SelectList from '../../components/SelectList/SelectList';
 import ProjectDescription from '../../components/ProjectDescription/ProjectDescription';
+import {Link} from 'react-router-dom';
+
 
 const TimerView = props => {
   return (
@@ -20,8 +23,14 @@ const TimerView = props => {
             <SelectList 
               clients={props.clients}
               currentClient={props.currentClient}
-              handleChange={props.handleChange}/>
-            <ProjectDescription />
+              handleClientChange={props.handleClientChange}/>
+            <ProjectDescription 
+              handleProjectDescription={props.handleProjectDescription}/>
+            <Link to="/ListView">
+            <Button 
+              label="save"
+              className={styles.saveButton}/>
+            </Link>
         </div>
     </div>
   );

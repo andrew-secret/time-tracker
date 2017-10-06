@@ -1,5 +1,5 @@
 import React from "react";
-import {Button} from '../button/button';
+import Button from '../Button/Button';
 import styles from "./Timer.scss";
 
 const Timer = props => {

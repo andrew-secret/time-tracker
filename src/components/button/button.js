@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import React from 'react'
 import styles from './button.scss'
 
-export const Button = (props) => {
+const Button = (props) => {
     const buttonClasses = classnames(styles.buttonStyle, props.className);
     return (
         <button 
@@ -16,6 +16,8 @@ export const Button = (props) => {
         </button>
     )
 }
+
+export default Button;
 
 Button.defaultProps = {
     type: 'button',

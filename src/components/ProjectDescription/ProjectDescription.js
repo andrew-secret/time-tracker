@@ -8,7 +8,9 @@ const ProjectDescription = props => {
     <label className={styles.label}>
         Task
     </label>
-    <input className={styles.inputField} type="text" />
+    <input className={styles.inputField} 
+      type="text"
+      onChange={props.handleProjectDescription}/>
     </div>
   );
 };
