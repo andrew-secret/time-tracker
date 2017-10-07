@@ -1,18 +1,18 @@
 import React from "react";
+import ProjectList from '../../components/ProjectList/ProjectList';
+import styles from './ListView.scss';
 
 const ListView = props => {
   return (
-    <div className="wrapper">
-      ListView huhu
-      <ul>
-        {props.projects.map(project => (
-          <li key={project.id}>
-            <h1>{project.client}</h1>
-            <p>{project.projectDescription}</p>
-            <span>{project.timeElapsed}</span>
-          </li>
-        ))}
-      </ul>
+    <div className={styles.wrapper}>
+      <h1 className={styles.headline}>
+        Your tracked projects
+      </h1>
+      <ProjectList
+        hours={props.hours}
+        minutes={props.minutes}
+        seconds={props.seconds} 
+        projects={props.projects}/>
     </div>
   );
 };
