@@ -1,0 +1,22 @@
+.projectListItem {
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin: 10px 20px 10px 40px;
+}
+
+.timeElapsed {
+    color: #323335;
+    font-size: 24px;
+    font-weight: 500;
+    border-right: 1px solid #E6E7F0;
+    padding: 20px;
+}
+
+.headline {
+    color: #323335;
+    margin: 0;
+    font-size: 30px;
+    padding: 0 15px;
+}
