@@ -26,6 +26,60 @@ const projectList = [
     client: "Nikdin",
     timeElapsed: 230,
     projectDescription: "i did something..."
+  },
+  {
+    id: 1,
+    client: "HansWurst Gmbh",
+    timeElapsed: 130,
+    projectDescription: "Die Krümmel gezählt"
+  },
+  {
+    id: 2,
+    client: "RichClient",
+    timeElapsed: 230,
+    projectDescription: "Redesign everything"
+  },
+  {
+    id: 1,
+    client: "HansWurst Gmbh",
+    timeElapsed: 130,
+    projectDescription: "Die Krümmel gezählt"
+  },
+  {
+    id: 2,
+    client: "RichClient",
+    timeElapsed: 230,
+    projectDescription: "Redesign everything"
+  },
+  {
+    id: 0,
+    client: "Nikdin",
+    timeElapsed: 230,
+    projectDescription: "i did something..."
+  },
+  {
+    id: 1,
+    client: "HansWurst Gmbh",
+    timeElapsed: 130,
+    projectDescription: "Die Krümmel gezählt"
+  },
+  {
+    id: 2,
+    client: "RichClient",
+    timeElapsed: 230,
+    projectDescription: "Redesign everything"
+  },
+  {
+    id: 1,
+    client: "HansWurst Gmbh",
+    timeElapsed: 130,
+    projectDescription: "Die Krümmel gezählt"
+  },
+  {
+    id: 2,
+    client: "RichClient",
+    timeElapsed: 230,
+    projectDescription: "Redesign everything"
   }
 ];
 
@@ -51,6 +105,11 @@ class App extends Component {
     this.handleClientChange = this.handleClientChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.startTimer = this.startTimer.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
+    this.reset = this.reset.bind(this);
+    this.getHours = this.getHours.bind(this);
+    this.getMinutes = this.getMinutes.bind(this);
+    this.getSeconds = this.getSeconds.bind(this);
   }
 
   handleSubmitProject() {
@@ -64,7 +123,7 @@ class App extends Component {
     const updateProjectList = addProject(projectList, newProject);
     this.setState({
       projects: updateProjectList,
-      isRunning: false
+      isRunning: false,
     });
   }
   onDismiss(id) {
@@ -129,8 +188,8 @@ class App extends Component {
                   startTimer={this.startTimer}
                   stopTimer={this.stopTimer}
                   reset={this.reset}
-                  hours={this.getHours()}
                   isRunning={this.state.isRunning}
+                  hours={this.getHours()}
                   minutes={this.getMinutes()}
                   seconds={this.getSeconds()}
                   clients={this.state.clients}
@@ -143,7 +202,12 @@ class App extends Component {
             />
             <Route
               path="/ListView"
-              render={state => <ListView projects={this.state.projects} />}
+              render={state => <ListView 
+                projects={this.state.projects}
+                hours={this.getHours()}
+                minutes={this.getMinutes()}
+                seconds={this.getSeconds()}
+              />}
             />
           </div>
         </BrowserRouter>
