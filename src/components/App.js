@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import {BrowserRouter, Route} from 'react-router-dom';
-import ListView from '../views/ListView/ListView';
-import TimerView from '../views/TimerView/TimerView';
+import { BrowserRouter, Route } from "react-router-dom";
+import ListView from "../views/ListView/ListView";
+import TimerView from "../views/TimerView/TimerView";
 
-import styles from './App.scss';
+import styles from "./App.scss";
 
 const clients = [
   {
@@ -20,15 +20,18 @@ const clients = [
   }
 ];
 
-const projects = [
+const projectList = [
   {
     id: 0,
-    client: 'Nikdin',
+    client: "Nikdin",
     timeElapsed: 230,
-    earned: 100,
-    projectDescription: 'i did something...'
+    projectDescription: "i did something..."
   }
 ];
+
+const generatedId = () => Math.floor(Math.random() * 100000);
+
+const addProject = (list, item) => [...list, item]
 
 class App extends Component {
   constructor(props) {
@@ -38,16 +41,32 @@ class App extends Component {
       clients,
       timeElapsed: 0,
       isRunning: false,
-      currentClient: '',
-      projectDescription: ''
+      currentClient: "",
+      projectDescription: "",
+      projects: projectList
     };
 
+    this.handleSubmitProject = this.handleSubmitProject.bind(this);
     this.handleProjectDescription = this.handleProjectDescription.bind(this);
     this.handleClientChange = this.handleClientChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.startTimer = this.startTimer.bind(this);
   }
 
+  handleSubmitProject() {
+    const newId = generatedId();
+    const newProject = {
+      id: newId,
+      client: this.state.currentClient,
+      projectDescription: this.state.projectDescription,
+      timeElapsed: this.state.timeElapsed
+    };
+    const updateProjectList = addProject(projectList, newProject);
+    this.setState({
+      projects: updateProjectList,
+      isRunning: false
+    });
+  }
   onDismiss(id) {
     const isNotId = item => item.id !== id;
     const updatedClientList = this.state.clientList.filter(isNotId);
@@ -64,13 +83,12 @@ class App extends Component {
     this.setState({
       currentClient: event.target.value
     });
-    console.log('event', event.target.value);
   }
 
   handleProjectDescription(event) {
     this.setState({
       projectDescription: event.target.value
-    })
+    });
   }
 
   startTimer = () => {
@@ -102,22 +120,31 @@ class App extends Component {
       <div className={styles.App}>
         <BrowserRouter>
           <div className={styles.background}>
-            <Route exact path="/" render={(state) => ( 
-              <TimerView 
-                timer={this.state.timer}
-                startTimer={this.startTimer}
-                stopTimer={this.stopTimer}
-                reset={this.reset}
-                hours={this.getHours()}
-                isRunning={this.state.isRunning}
-                minutes={this.getMinutes()}
-                seconds={this.getSeconds()}
-                clients={this.state.clients}
-                currentClient={this.state.currentClient}
-                handleClientChange={this.handleClientChange}
-                handleProjectDescription={this.handleProjectDescription}/> 
-              )} />
-            <Route path="/ListView" component={ListView} />
+            <Route
+              exact
+              path="/"
+              render={state => (
+                <TimerView
+                  timer={this.state.timer}
+                  startTimer={this.startTimer}
+                  stopTimer={this.stopTimer}
+                  reset={this.reset}
+                  hours={this.getHours()}
+                  isRunning={this.state.isRunning}
+                  minutes={this.getMinutes()}
+                  seconds={this.getSeconds()}
+                  clients={this.state.clients}
+                  currentClient={this.state.currentClient}
+                  handleClientChange={this.handleClientChange}
+                  handleProjectDescription={this.handleProjectDescription}
+                  handleSubmitProject={this.handleSubmitProject}
+                />
+              )}
+            />
+            <Route
+              path="/ListView"
+              render={state => <ListView projects={this.state.projects} />}
+            />
           </div>
         </BrowserRouter>
       </div>
@@ -126,5 +153,3 @@ class App extends Component {
 }
 
 export default App;
-
-
