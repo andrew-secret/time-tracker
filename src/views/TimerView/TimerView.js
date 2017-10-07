@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom';
 const TimerView = props => {
   return (
     <div className={styles.wrapper}>
-        <Timer 
+        <Timer
           timer={props.timer}
           startTimer={props.startTimer}
           stopTimer={props.stopTimer}
@@ -27,8 +27,9 @@ const TimerView = props => {
             <ProjectDescription 
               handleProjectDescription={props.handleProjectDescription}/>
             <Link to="/ListView">
-            <Button 
+            <Button
               label="save"
+              onClick={props.handleSubmitProject}
               className={styles.saveButton}/>
             </Link>
         </div>
