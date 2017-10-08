@@ -113,7 +113,6 @@ class App extends Component {
     this.handleSubmitProject = this.handleSubmitProject.bind(this);
     this.handleProjectDescription = this.handleProjectDescription.bind(this);
     this.handleClientChange = this.handleClientChange.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.reset = this.reset.bind(this);
@@ -134,13 +133,6 @@ class App extends Component {
     this.setState({
       projects: updateProjectList,
       isRunning: false,
-    });
-  }
-  onDismiss(id) {
-    const isNotId = item => item.id !== id;
-    const updatedClientList = this.state.clientList.filter(isNotId);
-    this.setState({
-      clientList: updatedClientList
     });
   }
 
