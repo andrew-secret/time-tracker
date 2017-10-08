@@ -25,61 +25,71 @@ const projectList = [
     id: 0,
     client: "Nikdin",
     timeElapsed: 230,
-    projectDescription: "i did something..."
+    projectDescription: "i did something...",
+    earned: 300
   },
   {
     id: 1,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
-    projectDescription: "Die Krümmel gezählt"
+    projectDescription: "Die Krümmel gezählt",
+    earned: 231
   },
   {
     id: 2,
     client: "RichClient",
     timeElapsed: 230,
-    projectDescription: "Redesign everything"
+    projectDescription: "Redesign everything",
+    earned: 123
   },
   {
     id: 1,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
-    projectDescription: "Die Krümmel gezählt"
+    projectDescription: "Die Krümmel gezählt",
+    earned: 1200
   },
   {
     id: 2,
     client: "RichClient",
     timeElapsed: 230,
-    projectDescription: "Redesign everything"
+    projectDescription: "Redesign everything",
+    earned: 300
   },
   {
     id: 0,
     client: "Nikdin",
     timeElapsed: 230,
-    projectDescription: "i did something..."
+    projectDescription: "i did something...",
+    earned: 456
   },
   {
     id: 1,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
-    projectDescription: "Die Krümmel gezählt"
+    projectDescription: "Die Krümmel gezählt",
+    earned: 300
   },
   {
     id: 2,
     client: "RichClient",
     timeElapsed: 230,
-    projectDescription: "Redesign everything"
+    projectDescription: "Redesign everything",
+    earned: 300
   },
   {
     id: 1,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
-    projectDescription: "Die Krümmel gezählt"
+    projectDescription: "Die Krümmel gezählt",
+    earned: 300
   },
   {
     id: 2,
     client: "RichClient",
     timeElapsed: 230,
-    projectDescription: "Redesign everything"
+    projectDescription: "Redesign everything",
+    earned: 300
   }
 ];
 

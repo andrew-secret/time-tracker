@@ -3,7 +3,8 @@
     border-radius: 5px;
     display: flex;
     align-items: center;
-    margin: 10px 20px 10px 40px;
+    margin: 10px 40px;
+    justify-content: space-between;
 }
 
 .timeElapsed {
@@ -11,12 +12,32 @@
     font-size: 24px;
     font-weight: 500;
     border-right: 1px solid #E6E7F0;
-    padding: 20px;
+    padding: 30px;
+}
+
+.projectDetails {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    width: 100%;
 }
 
 .headline {
     color: #323335;
     margin: 0;
+    font-size: 25px;
+}
+
+.projectDescription {
+    color: #9499A7;
+    font-size: 16px;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.earned {
+    padding: 30px;
+    font-weight: 500;
     font-size: 30px;
-    padding: 0 15px;
+    color: #93BD3F; 
 }

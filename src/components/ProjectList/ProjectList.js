@@ -15,7 +15,8 @@ const ProjectList = props => {
             id={project.id}
             client={project.client}
             timeElapsed={project.timeElapsed}
-            projectDescription={project.projectDescription}/>
+            projectDescription={project.projectDescription}
+            earned={project.earned}/>
         ))}
       </ul>
     </div>

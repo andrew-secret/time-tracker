@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./ProjectListItem.scss";
 
+
 const ProjectListItem = props => {
   return (
     <li className={styles.projectListItem} key={props.id}>
@@ -9,8 +10,17 @@ const ProjectListItem = props => {
             {props.minutes}:
             {props.seconds}
         </span>
-      <h3 className={styles.headline}>{props.client}</h3>
-      <p>{props.projectDescription}</p>
+        <div className={styles.projectDetails}>
+          <h3 className={styles.headline}>
+            {props.client}
+          </h3>
+          <p className={styles.projectDescription}>
+            {props.projectDescription}
+          </p>
+        </div>
+        <div className={styles.earned}>
+          {props.earned}€
+        </div>
     </li>
   );
 };
