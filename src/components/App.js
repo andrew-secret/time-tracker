@@ -107,7 +107,8 @@ class App extends Component {
       isRunning: false,
       currentClient: "",
       projectDescription: "",
-      projects: projectList
+      projects: projectList,
+      isActive: false
     };
 
     this.handleSubmitProject = this.handleSubmitProject.bind(this);
@@ -119,6 +120,7 @@ class App extends Component {
     this.getHours = this.getHours.bind(this);
     this.getMinutes = this.getMinutes.bind(this);
     this.getSeconds = this.getSeconds.bind(this);
+    this.addActiveClass = this.addActiveClass.bind(this);
   }
 
   handleSubmitProject() {
@@ -134,6 +136,12 @@ class App extends Component {
       projects: updateProjectList,
       isRunning: false,
     });
+  }
+
+  addActiveClass = () => {
+    this.setState({
+      isActive: true
+    })
   }
 
   getSeconds = () => `0${this.state.timeElapsed % 60}`.slice(-2);
@@ -209,6 +217,7 @@ class App extends Component {
                 hours={this.getHours()}
                 minutes={this.getMinutes()}
                 seconds={this.getSeconds()}
+                addActiveClass={this.addActiveClass}
               />}
             />
           </div>

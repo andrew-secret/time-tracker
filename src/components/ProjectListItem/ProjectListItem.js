@@ -1,10 +1,12 @@
-import React from "react";
-import styles from "./ProjectListItem.scss";
-
+import React from 'react';
+import styles from './ProjectListItem.scss';
+import classnames from 'classnames';
 
 const ProjectListItem = props => {
   return (
-    <li className={styles.projectListItem} key={props.id}>
+    <li className={styles.projectListItem} 
+      key={props.id}
+      onClick={props.onClick}>
         <span className={styles.timeElapsed}>
             {props.hours}:
             {props.minutes}:

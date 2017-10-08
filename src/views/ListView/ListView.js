@@ -12,7 +12,8 @@ const ListView = props => {
         hours={props.hours}
         minutes={props.minutes}
         seconds={props.seconds} 
-        projects={props.projects}/>
+        projects={props.projects}
+        addActiveClass={props.addActiveClass}/>
     </div>
   );
 };
