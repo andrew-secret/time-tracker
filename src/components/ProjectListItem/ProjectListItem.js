@@ -2,11 +2,18 @@ import React from 'react';
 import styles from './ProjectListItem.scss';
 import classnames from 'classnames';
 
+
+
 const ProjectListItem = props => {
+
+  const projectListClasses = classnames(styles.projectListItem, {
+    [styles.isActive]: props.isActive === true,
+  });
   return (
-    <li className={styles.projectListItem} 
+    <li className={projectListClasses} 
       key={props.id}
-      onClick={props.onClick}>
+      onClick={props.onClick}
+      isActive={props.isActive}>
         <span className={styles.timeElapsed}>
             {props.hours}:
             {props.minutes}:

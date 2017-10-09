@@ -17,6 +17,7 @@ const ProjectList = props => {
             timeElapsed={project.timeElapsed}
             projectDescription={project.projectDescription}
             earned={project.earned}
+            isActive={props.isActive}
             onClick={props.addActiveClass}/>
         ))}
       </ul>
