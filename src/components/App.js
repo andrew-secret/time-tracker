@@ -43,49 +43,49 @@ const projectList = [
     earned: 123
   },
   {
-    id: 1,
+    id: 3,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
     projectDescription: "Die Krümmel gezählt",
     earned: 1200
   },
   {
-    id: 2,
+    id: 4,
     client: "RichClient",
     timeElapsed: 230,
     projectDescription: "Redesign everything",
     earned: 300
   },
   {
-    id: 0,
+    id: 5,
     client: "Nikdin",
     timeElapsed: 230,
     projectDescription: "i did something...",
     earned: 456
   },
   {
-    id: 1,
+    id: 6,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
     projectDescription: "Die Krümmel gezählt",
     earned: 300
   },
   {
-    id: 2,
+    id: 7,
     client: "RichClient",
     timeElapsed: 230,
     projectDescription: "Redesign everything",
     earned: 300
   },
   {
-    id: 1,
+    id: 8,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
     projectDescription: "Die Krümmel gezählt",
     earned: 300
   },
   {
-    id: 2,
+    id: 9,
     client: "RichClient",
     timeElapsed: 230,
     projectDescription: "Redesign everything",
@@ -138,9 +138,10 @@ class App extends Component {
     });
   }
 
-  addActiveClass = () => {
+  addActiveClass = (event) => {
+    const currentState = this.state.isActive;
     this.setState({
-      isActive: true
+      isActive: !currentState
     })
   }
 
@@ -218,6 +219,7 @@ class App extends Component {
                 minutes={this.getMinutes()}
                 seconds={this.getSeconds()}
                 addActiveClass={this.addActiveClass}
+                isActive={this.state.isActive}
               />}
             />
           </div>
