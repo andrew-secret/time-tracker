@@ -1,10 +1,19 @@
 import React from 'react';
 import styles from './ProjectListItem.scss';
 import classnames from 'classnames';
+import {getHours,
+        getMinutes,
+        getSeconds} from '../../lib/timeHelper';
 
 
 
 const ProjectListItem = props => {
+
+
+// getSeconds = () => `0${props.timeElapsed % 60}`.slice(-2);
+// getMinutes = () => `0${Math.floor(props.timeElapsed / 60)}`.slice(-2);
+// getHours = () => `0${Math.floor(props.timeElapsed / 600)}`;
+
 
   const projectListClasses = classnames(styles.projectListItem, {
     [styles.isActive]: props.isActive === true,
@@ -15,9 +24,9 @@ const ProjectListItem = props => {
       onClick={props.onClick}
       isActive={props.isActive}>
         <span className={styles.timeElapsed}>
-            {props.hours}:
-            {props.minutes}:
-            {props.seconds}
+            {getHours(props.timeElapsed)}:
+            {getMinutes(props.timeElapsed)}:
+            {getSeconds(props.timeElapsed)}
         </span>
         <div className={styles.projectDetails}>
           <h3 className={styles.headline}>

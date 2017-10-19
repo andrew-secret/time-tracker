@@ -15,10 +15,8 @@ const TimerView = props => {
           startTimer={props.startTimer}
           stopTimer={props.stopTimer}
           reset={props.reset}
-          hours={props.hours}
           isRunning={props.isRunning}
-          minutes={props.minutes}
-          seconds={props.seconds}/>
+          timeElapsed={props.timeElapsed}/>
           <div className={styles.inputSection}>
             <SelectList 
               clients={props.clients}

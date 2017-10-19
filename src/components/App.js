@@ -117,9 +117,6 @@ class App extends Component {
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.reset = this.reset.bind(this);
-    this.getHours = this.getHours.bind(this);
-    this.getMinutes = this.getMinutes.bind(this);
-    this.getSeconds = this.getSeconds.bind(this);
     this.addActiveClass = this.addActiveClass.bind(this);
   }
 
@@ -138,16 +135,12 @@ class App extends Component {
     });
   }
 
-  addActiveClass = (event) => {
+  addActiveClass = () => {
     const currentState = this.state.isActive;
     this.setState({
       isActive: !currentState
     })
   }
-
-  getSeconds = () => `0${this.state.timeElapsed % 60}`.slice(-2);
-  getMinutes = () => `0${Math.floor(this.state.timeElapsed / 60)}`.slice(-2);
-  getHours = () => `0${Math.floor(this.state.timeElapsed / 600)}`;
 
   handleClientChange(event) {
     this.setState({
@@ -162,6 +155,7 @@ class App extends Component {
   }
 
   startTimer = () => {
+    console.log('es wurde was geklickt');
     this.interval = setInterval(() => {
       this.setState({
         timeElapsed: this.state.timeElapsed + 1,
@@ -200,9 +194,7 @@ class App extends Component {
                   stopTimer={this.stopTimer}
                   reset={this.reset}
                   isRunning={this.state.isRunning}
-                  hours={this.getHours()}
-                  minutes={this.getMinutes()}
-                  seconds={this.getSeconds()}
+                  timeElapsed={this.state.timeElapsed}
                   clients={this.state.clients}
                   currentClient={this.state.currentClient}
                   handleClientChange={this.handleClientChange}
@@ -215,9 +207,6 @@ class App extends Component {
               path="/ListView"
               render={state => <ListView 
                 projects={this.state.projects}
-                hours={this.getHours()}
-                minutes={this.getMinutes()}
-                seconds={this.getSeconds()}
                 addActiveClass={this.addActiveClass}
                 isActive={this.state.isActive}
               />}

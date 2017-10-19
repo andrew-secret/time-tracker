@@ -1,8 +1,12 @@
 import React from "react";
 import Button from '../Button/Button';
 import styles from "./Timer.scss";
+import {getHours,
+        getMinutes,
+        getSeconds} from '../../lib/timeHelper';
 
 const Timer = props => {
+
   console.log('isRunning', props.isRunning);
   return (
     <div className={styles.timer}>
@@ -11,9 +15,9 @@ const Timer = props => {
         total time
       </label>
       <span className={styles.currentTime}>
-        {props.hours}:
-        {props.minutes}:
-        {props.seconds}
+        {getHours(props.timeElapsed)}:
+        {getMinutes(props.timeElapsed)}:
+        {getSeconds(props.timeElapsed)}
       </span>
       <Button
         label=""
