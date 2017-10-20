@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import ListView from "../views/ListView/ListView";
 import TimerView from "../views/TimerView/TimerView";
+import {toggleClass,
+        updateProject,
+        findById} from '../lib/timeHelper';
 
 import styles from "./App.scss";
 
@@ -25,7 +28,81 @@ const projectList = [
     id: 0,
     client: "Nikdin",
     timeElapsed: 230,
-    projectDescription: "i did something..."
+    projectDescription: "i did something...",
+    earned: 300,
+    active: false
+  },
+  {
+    id: 1,
+    client: "HansWurst Gmbh",
+    timeElapsed: 130,
+    projectDescription: "Die Krümmel gezählt",
+    earned: 231,
+    active: false
+  },
+  {
+    id: 2,
+    client: "RichClient",
+    timeElapsed: 230,
+    projectDescription: "Redesign everything",
+    earned: 123,
+    active: false
+  },
+  {
+    id: 3,
+    client: "HansWurst Gmbh",
+    timeElapsed: 130,
+    projectDescription: "Die Krümmel gezählt",
+    earned: 1200,
+    active: false
+  },
+  {
+    id: 4,
+    client: "RichClient",
+    timeElapsed: 230,
+    projectDescription: "Redesign everything",
+    earned: 300,
+    active: false
+  },
+  {
+    id: 5,
+    client: "Nikdin",
+    timeElapsed: 230,
+    projectDescription: "i did something...",
+    earned: 456,
+    active: false
+  },
+  {
+    id: 6,
+    client: "HansWurst Gmbh",
+    timeElapsed: 130,
+    projectDescription: "Die Krümmel gezählt",
+    earned: 300,
+    active: false
+  },
+  {
+    id: 7,
+    client: "RichClient",
+    timeElapsed: 230,
+    projectDescription: "Redesign everything",
+    earned: 300,
+    active: false
+  },
+  {
+    id: 8,
+    client: "HansWurst Gmbh",
+    timeElapsed: 130,
+    projectDescription: "Die Krümmel gezählt",
+    earned: 300,
+    active: false
+  },
+  {
+    id: 9,
+    client: "RichClient",
+    timeElapsed: 230,
+    projectDescription: "Redesign everything",
+    earned: 300,
+    active: false
   }
 ];
 
@@ -49,8 +126,10 @@ class App extends Component {
     this.handleSubmitProject = this.handleSubmitProject.bind(this);
     this.handleProjectDescription = this.handleProjectDescription.bind(this);
     this.handleClientChange = this.handleClientChange.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
     this.startTimer = this.startTimer.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
+    this.reset = this.reset.bind(this);
+    this.addActiveClass = this.addActiveClass.bind(this);
   }
 
   handleSubmitProject() {
@@ -59,25 +138,23 @@ class App extends Component {
       id: newId,
       client: this.state.currentClient,
       projectDescription: this.state.projectDescription,
-      timeElapsed: this.state.timeElapsed
+      timeElapsed: this.state.timeElapsed,
+      isActive: false
     };
     const updateProjectList = addProject(projectList, newProject);
     this.setState({
       projects: updateProjectList,
-      isRunning: false
-    });
-  }
-  onDismiss(id) {
-    const isNotId = item => item.id !== id;
-    const updatedClientList = this.state.clientList.filter(isNotId);
-    this.setState({
-      clientList: updatedClientList
+      isRunning: false,
     });
   }
 
-  getSeconds = () => `0${this.state.timeElapsed % 60}`.slice(-2);
-  getMinutes = () => `0${Math.floor(this.state.timeElapsed / 60)}`.slice(-2);
-  getHours = () => `0${Math.floor(this.state.timeElapsed / 600)}`;
+  addActiveClass = (id) => {
+    const project = findById(id, this.state.projects)
+    console.log('PROJECT', project);
+    const toggled = toggleClass(project)
+    const updatedProjects = updateProject(this.state.projects, toggled)
+    this.setState({projects: updatedProjects})
+  }
 
   handleClientChange(event) {
     this.setState({
@@ -92,6 +169,7 @@ class App extends Component {
   }
 
   startTimer = () => {
+    console.log('es wurde was geklickt');
     this.interval = setInterval(() => {
       this.setState({
         timeElapsed: this.state.timeElapsed + 1,
@@ -129,10 +207,8 @@ class App extends Component {
                   startTimer={this.startTimer}
                   stopTimer={this.stopTimer}
                   reset={this.reset}
-                  hours={this.getHours()}
                   isRunning={this.state.isRunning}
-                  minutes={this.getMinutes()}
-                  seconds={this.getSeconds()}
+                  timeElapsed={this.state.timeElapsed}
                   clients={this.state.clients}
                   currentClient={this.state.currentClient}
                   handleClientChange={this.handleClientChange}
@@ -143,7 +219,10 @@ class App extends Component {
             />
             <Route
               path="/ListView"
-              render={state => <ListView projects={this.state.projects} />}
+              render={state => <ListView 
+                projects={this.state.projects}
+                addActiveClass={this.addActiveClass}
+              />}
             />
           </div>
         </BrowserRouter>
