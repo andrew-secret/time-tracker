@@ -3,26 +3,24 @@ import styles from './ProjectListItem.scss';
 import classnames from 'classnames';
 import {getHours,
         getMinutes,
-        getSeconds} from '../../lib/timeHelper';
+        getSeconds,
+        partial} from '../../lib/timeHelper';
 
 
 
 const ProjectListItem = props => {
 
-
-// getSeconds = () => `0${props.timeElapsed % 60}`.slice(-2);
-// getMinutes = () => `0${Math.floor(props.timeElapsed / 60)}`.slice(-2);
-// getHours = () => `0${Math.floor(props.timeElapsed / 600)}`;
-
-
   const projectListClasses = classnames(styles.projectListItem, {
-    [styles.isActive]: props.isActive === true,
+    [styles.isActive]: props.active === true,
   });
+
+  const handleToggle = partial(props.addActiveClass, props.id)
+
   return (
     <li className={projectListClasses} 
       key={props.id}
-      onClick={props.onClick}
-      isActive={props.isActive}>
+      onClick={handleToggle}
+      active={props.active}>
         <span className={styles.timeElapsed}>
             {getHours(props.timeElapsed)}:
             {getMinutes(props.timeElapsed)}:

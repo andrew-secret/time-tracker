@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import ListView from "../views/ListView/ListView";
 import TimerView from "../views/TimerView/TimerView";
+import {toggleClass,
+        updateProject,
+        findById} from '../lib/timeHelper';
 
 import styles from "./App.scss";
 
@@ -26,70 +29,80 @@ const projectList = [
     client: "Nikdin",
     timeElapsed: 230,
     projectDescription: "i did something...",
-    earned: 300
+    earned: 300,
+    active: false
   },
   {
     id: 1,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
     projectDescription: "Die Krümmel gezählt",
-    earned: 231
+    earned: 231,
+    active: false
   },
   {
     id: 2,
     client: "RichClient",
     timeElapsed: 230,
     projectDescription: "Redesign everything",
-    earned: 123
+    earned: 123,
+    active: false
   },
   {
     id: 3,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
     projectDescription: "Die Krümmel gezählt",
-    earned: 1200
+    earned: 1200,
+    active: false
   },
   {
     id: 4,
     client: "RichClient",
     timeElapsed: 230,
     projectDescription: "Redesign everything",
-    earned: 300
+    earned: 300,
+    active: false
   },
   {
     id: 5,
     client: "Nikdin",
     timeElapsed: 230,
     projectDescription: "i did something...",
-    earned: 456
+    earned: 456,
+    active: false
   },
   {
     id: 6,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
     projectDescription: "Die Krümmel gezählt",
-    earned: 300
+    earned: 300,
+    active: false
   },
   {
     id: 7,
     client: "RichClient",
     timeElapsed: 230,
     projectDescription: "Redesign everything",
-    earned: 300
+    earned: 300,
+    active: false
   },
   {
     id: 8,
     client: "HansWurst Gmbh",
     timeElapsed: 130,
     projectDescription: "Die Krümmel gezählt",
-    earned: 300
+    earned: 300,
+    active: false
   },
   {
     id: 9,
     client: "RichClient",
     timeElapsed: 230,
     projectDescription: "Redesign everything",
-    earned: 300
+    earned: 300,
+    active: false
   }
 ];
 
@@ -107,8 +120,7 @@ class App extends Component {
       isRunning: false,
       currentClient: "",
       projectDescription: "",
-      projects: projectList,
-      isActive: false
+      projects: projectList
     };
 
     this.handleSubmitProject = this.handleSubmitProject.bind(this);
@@ -126,7 +138,8 @@ class App extends Component {
       id: newId,
       client: this.state.currentClient,
       projectDescription: this.state.projectDescription,
-      timeElapsed: this.state.timeElapsed
+      timeElapsed: this.state.timeElapsed,
+      isActive: false
     };
     const updateProjectList = addProject(projectList, newProject);
     this.setState({
@@ -135,11 +148,12 @@ class App extends Component {
     });
   }
 
-  addActiveClass = () => {
-    const currentState = this.state.isActive;
-    this.setState({
-      isActive: !currentState
-    })
+  addActiveClass = (id) => {
+    const project = findById(id, this.state.projects)
+    console.log('PROJECT', project);
+    const toggled = toggleClass(project)
+    const updatedProjects = updateProject(this.state.projects, toggled)
+    this.setState({projects: updatedProjects})
   }
 
   handleClientChange(event) {
@@ -208,7 +222,6 @@ class App extends Component {
               render={state => <ListView 
                 projects={this.state.projects}
                 addActiveClass={this.addActiveClass}
-                isActive={this.state.isActive}
               />}
             />
           </div>

@@ -3,22 +3,23 @@ import styles from './ProjectList.scss';
 import ProjectListItem from '../ProjectListItem/ProjectListItem';
 
 const ProjectList = props => {
-  console.log("isRunning", props.isRunning);
+  
   return (
     <div className={styles.wrapper}>
       <ul className={styles.projectList}>
         {props.projects.map(project => (
           <ProjectListItem 
+            addActiveClass={props.addActiveClass}
             hours={props.hours}
             minutes={props.minutes}
             seconds={props.seconds}
-            id={project.id}
+            key={project.key}
+            active={project.active}
             client={project.client}
             timeElapsed={project.timeElapsed}
             projectDescription={project.projectDescription}
             earned={project.earned}
-            isActive={props.isActive}
-            onClick={props.addActiveClass}/>
+            {...project}/>
         ))}
       </ul>
     </div>

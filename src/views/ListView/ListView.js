@@ -13,8 +13,7 @@ const ListView = props => {
         minutes={props.minutes}
         seconds={props.seconds} 
         projects={props.projects}
-        addActiveClass={props.addActiveClass}
-        isActive={props.isActive}/>
+        addActiveClass={props.addActiveClass}/>
     </div>
   );
 };
